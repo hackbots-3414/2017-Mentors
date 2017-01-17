@@ -8,28 +8,46 @@
 package edu.wpi.first.wpilibj.hal;
 
 import java.io.File;
+import java.util.Hashtable;
 
 /**
- * Base class for all JNI wrappers.
+ * Base class for all JNI wrappers. Intercepts the JNI calls for the test
+ * harness.
  */
-public class JNIWrapper {
-  static boolean libraryLoaded = false;
-  static File jniLibrary = null;
+public class JNIWrapper
+{
+	public static int getPortWithModule(byte module, byte channel)
+	{
+		System.out.println("getPortWithModule(" + module + ", " + channel + ")");
+		Thread.dumpStack();
+		return module + channel;
+	}
 
-  static {
-    try {
-      if (!libraryLoaded) {
-        System.loadLibrary("wpilibJavaJNI");
-        libraryLoaded = true;
-      }
+	public static int getPort(byte channel)
+	{
+		System.out.println("getPort(" + channel + ")");
+		Thread.dumpStack();
+		return channel;
+	}
+	
+	public class PortChannel
+	{
+		private byte module = 0;
+		private byte channel = 0;
 
-    } catch (Exception ex) {
-      ex.printStackTrace();
-      System.exit(1);
-    }
-  }
-
-  public static native int getPortWithModule(byte module, byte channel);
-
-  public static native int getPort(byte channel);
+		public PortChannel(byte module, byte channel)
+		{
+			this.module = module;
+			this.channel = channel;
+		}
+		
+		public byte getModule()
+		{
+			return module;
+		}
+		public byte getChannel()
+		{
+			return channel;
+		}
+	}
 }
