@@ -14,7 +14,7 @@ public class DriverStation
 	public static final long MATCH_LENGTH = (2 * 60 + 30) * 1000;
 	private static DriverStation me = new DriverStation();
 	
-	private Joystick[] joysticks = new Joystick[2];
+	private JoystickList joysticks = new JoystickList();
 	private int allianceStation = 0;
 	private long matchEndTime = System.currentTimeMillis() + MATCH_LENGTH;
 	private boolean systemActive = false;
@@ -34,11 +34,11 @@ public class DriverStation
 	 */
 	private DriverStation()
 	{
-		joysticks[0] = new Joystick(0);
-		joysticks[1] = new Joystick(1);
+		joysticks.add(new Joystick(0));
+		joysticks.add(new Joystick(1));
 	}
 
-	public Joystick[] getJoysticks()
+	public JoystickList getJoysticks()
 	{
 		return joysticks;
 	}

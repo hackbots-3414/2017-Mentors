@@ -8,6 +8,7 @@
 package edu.wpi.first.wpilibj.hal;
 
 import java.nio.ByteBuffer;
+import java.util.ArrayList;
 import java.util.BitSet;
 
 import org.fpsrobotics.steamworks.utframework.DriverStation;
@@ -18,8 +19,6 @@ import org.fpsrobotics.steamworks.utframework.Joystick;
  * Stubbed out to bypass C code in favor of Eclipse for unit testing.
  * .
  */
-@SuppressWarnings(
-{ "AbbreviationAsWordInName", "MethodName" })
 public class HAL extends JNIWrapper
 {
 	private static String lastErrorMessage = null;
@@ -124,7 +123,6 @@ public class HAL extends JNIWrapper
 		return DriverStation.getSingleton().getAllianceStation();
 	}
 
-	@SuppressWarnings("JavadocMethod")
 	public static AllianceStationID getAllianceStation()
 	{
 		switch (nativeGetAllianceStation())
@@ -151,20 +149,20 @@ public class HAL extends JNIWrapper
 
 	public static short getJoystickAxes(byte joystickNum, float[] axesArray)
 	{
-		// Calls FRCDriverStation.cpp to call the remote driver to see what's 
-		// connected
-		Joystick[] joysticks = DriverStation.getSingleton().getJoysticks();
-		return (short) joysticks[joystickNum].getNumberOfAxes();
+		ArrayList<Joystick> joysticks = DriverStation.getSingleton().getJoysticks();
+		if (joysticks.size() >= joystickNum)
+			return -1;
+		return (short) joysticks.get(joystickNum).getNumberOfAxes();
 	}
 
 	public static short getJoystickPOVs(byte joystickNum, short[] povsArray)
 	{
-		return (short) DriverStation.getSingleton().getJoysticks()[joystickNum].getCurrentPointOfView();
+		return (short) DriverStation.getSingleton().getJoysticks().get(joystickNum).getCurrentPointOfView();
 	}
 
 	public static int getJoystickButtons(byte joystickNum, ByteBuffer count)
 	{
-		return DriverStation.getSingleton().getJoysticks()[joystickNum].getNumberOfButtons();
+		return DriverStation.getSingleton().getJoysticks().get(joystickNum).getNumberOfButtons();
 	}
 
 	/**
@@ -178,7 +176,7 @@ public class HAL extends JNIWrapper
 	 */
 	public static int setJoystickOutputs(byte joystickNum, int outputs, short leftRumble, short rightRumble)
 	{
-		Joystick joystick = DriverStation.getSingleton().getJoysticks()[joystickNum];
+		Joystick joystick = DriverStation.getSingleton().getJoysticks().get(joystickNum);
 		joystick.setOutputs(outputs);
 		joystick.setRumbleLeft(leftRumble);
 		joystick.setRumbleRight(rightRumble);
@@ -187,7 +185,7 @@ public class HAL extends JNIWrapper
 
 	public static int getJoystickIsXbox(byte joystickNum)
 	{
-		if (DriverStation.getSingleton().getJoysticks()[joystickNum].isXBox())
+		if (DriverStation.getSingleton().getJoysticks().get(joystickNum).isXBox())
 			return 1;
 		return 0;
 	}
@@ -196,7 +194,7 @@ public class HAL extends JNIWrapper
 
 	public static String getJoystickName(byte joystickNum)
 	{
-		return DriverStation.getSingleton().getJoysticks()[joystickNum].getName();
+		return DriverStation.getSingleton().getJoysticks().get(joystickNum).getName();
 	}
 
 	public static int getJoystickAxisType(byte joystickNum, byte axis)
@@ -204,7 +202,7 @@ public class HAL extends JNIWrapper
 		// this is a weird method.  We'll get to make sure we have a valid joystick
 		// at joystickNum, but, ultimately return axis.  WPILib appears to permit
 		// remapping of joystick axes, something I highly doubt anyone sane would do.
-		if (joystickNum > DriverStation.getSingleton().getJoysticks().length)
+		if (joystickNum > DriverStation.getSingleton().getJoysticks().size())
 			throw new ArrayIndexOutOfBoundsException("Joystick " + joystickNum + " does not exist");
 		return axis;
 	}
