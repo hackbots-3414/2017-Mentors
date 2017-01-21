@@ -47,7 +47,7 @@ public class NetworkTablesJNI
 		Object value = networkTable.get(key);
 		if (value == null)
 			return -1;
-		
+		// TODO: look up C++ code for type codes.
 	}
 
 	public static boolean putBoolean(String key, boolean value)
