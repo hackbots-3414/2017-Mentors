@@ -17,24 +17,26 @@ import java.util.Hashtable;
  * @author zdog
  *
  */
-public class NetworkTablesJNI 
+public class NetworkTablesJNI
 {
 	private static Hashtable<String, Object> networkTable = new Hashtable<>();
 	private static Hashtable<String, Object> defaultTable = new Hashtable<>();
 	private static Hashtable<String, Integer> entryFlags = new Hashtable<>();
 	private static LoggerFunction logger = null;
+	private static String networkIdentity = null;
 
 	public static boolean containsKey(String key)
 	{
 		return networkTable.containsKey(key);
 	}
-	
+
 	/**
-	 * zdog added to throw TableKeyNotDefinedException when a key
-	 * does not exist in the table.
+	 * zdog added to throw TableKeyNotDefinedException when a key does not exist
+	 * in the table.
 	 * 
 	 * @param key
-	 * @throws TableKeyNotDefinedException when the key has not been set
+	 * @throws TableKeyNotDefinedException
+	 *             when the key has not been set
 	 */
 	public static void checkContainsKey(String key) throws TableKeyNotDefinedException
 	{
@@ -47,7 +49,29 @@ public class NetworkTablesJNI
 		Object value = networkTable.get(key);
 		if (value == null)
 			return -1;
-		// TODO: look up C++ code for type codes.
+		// NT_UNASSIGNED = 0,
+		// NT_BOOLEAN = 0x01,
+		// NT_DOUBLE = 0x02,
+		// NT_STRING = 0x04,
+		// NT_RAW = 0x08,
+		// NT_BOOLEAN_ARRAY = 0x10,
+		// NT_DOUBLE_ARRAY = 0x20,
+		// NT_STRING_ARRAY = 0x40,
+		// NT_RPC = 0x80
+		if (value instanceof Boolean)
+			return 0x01;
+		else if (value instanceof Double)
+			return 0x02;
+		else if (value instanceof String)
+			return 0x04;
+		else if (value instanceof boolean[])
+			return 0x10;
+		else if (value instanceof double[])
+			return 0x20;
+		else if (value instanceof String[])
+			return 0x40;
+		// default - we don't know what this is...
+		return 0;
 	}
 
 	public static boolean putBoolean(String key, boolean value)
@@ -276,12 +300,12 @@ public class NetworkTablesJNI
 
 	public static void setEntryFlags(String key, int flags)
 	{
-		
+
 	}
 
 	public static int getEntryFlags(String key)
 	{
-		return ((Integer)entryFlags.get(key)).intValue();
+		return ((Integer) entryFlags.get(key)).intValue();
 	}
 
 	public static void deleteEntry(String key)
@@ -296,6 +320,8 @@ public class NetworkTablesJNI
 
 	public static EntryInfo[] getEntries(String prefix, int types)
 	{
+		// TODO build this
+		return null;
 	}
 
 	public static void flush()
@@ -309,9 +335,16 @@ public class NetworkTablesJNI
 		void apply(int uid, String key, Object value, int flags);
 	}
 
-	public static int addEntryListener(String prefix, EntryListenerFunction listener, int flags);
+	public static int addEntryListener(String prefix, EntryListenerFunction listener, int flags)
+	{
+		// TODO build this
+		return 0;
+	}
 
-	public static void removeEntryListener(int entryListenerUid);
+	public static void removeEntryListener(int entryListenerUid)
+	{
+		// TODO build this
+	}
 
 	@FunctionalInterface
 	public interface ConnectionListenerFunction
@@ -319,54 +352,123 @@ public class NetworkTablesJNI
 		void apply(int uid, boolean connected, ConnectionInfo conn);
 	}
 
-	public static int addConnectionListener(ConnectionListenerFunction listener, boolean immediateNotify);
+	public static int addConnectionListener(ConnectionListenerFunction listener, boolean immediateNotify)
+	{
+		// TODO build this
+		return 0;
+	}
 
-	public static void removeConnectionListener(int connListenerUid);
+	public static void removeConnectionListener(int connListenerUid)
+	{
+		// TODO build this
+	}
 
 	// public static void createRpc(String key, byte[] def, IRpc rpc);
 	// public static void createRpc(String key, ByteBuffer def, int
 	// def_len, IRpc rpc);
-	public static byte[] getRpc(String key) throws TableKeyNotDefinedException;
+	public static byte[] getRpc(String key) throws TableKeyNotDefinedException
+	{
+		// TODO build this
+		return null;
+	}
 
-	public static byte[] getRpc(String key, byte[] defaultValue);
+	public static byte[] getRpc(String key, byte[] defaultValue)
+	{
+		// TODO build this
+		return null;
+	}
 
-	public static int callRpc(String key, byte[] params);
+	public static int callRpc(String key, byte[] params)
+	{
+		// TODO build this
+		return 0;
+	}
 
-	public static int callRpc(String key, ByteBuffer params, int params_len);
+	public static int callRpc(String key, ByteBuffer params, int params_len)
+	{
+		// TODO build this
+		return 0;
+	}
 	// public static byte[] getRpcResultBlocking(int callUid);
 	// public static byte[] getRpcResultNonblocking(int callUid) throws
 	// RpcNoResponseException;
 
-	public static void setNetworkIdentity(String name);
+	public static void setNetworkIdentity(String name)
+	{
+		networkIdentity = name;
+	}
 
-	public static void startServer(String persistFilename, String listenAddress, int port);
+	public static void startServer(String persistFilename, String listenAddress, int port)
+	{
+		// TODO build this
+	}
 
-	public static void stopServer();
+	public static void stopServer()
+	{
+		// TODO build this
+	}
 
-	public static void startClient();
+	public static void startClient()
+	{
+		startClient((String) null, 0);
+	}
 
-	public static void startClient(String serverName, int port);
+	public static void startClient(String serverName, int port)
+	{
+		startClient(new String[] {serverName}, new int[] {port});
+	}
 
-	public static void startClient(String[] serverNames, int[] ports);
+	public static void startClient(String[] serverNames, int[] ports)
+	{
+		// TODO build this
+	}
 
-	public static void stopClient();
+	public static void stopClient()
+	{
+		// TODO build this
+	}
 
-	public static void setServer(String serverName, int port);
+	public static void setServer(String serverName, int port)
+	{
+		setServer(new String[] {serverName}, new int[] { port });
+	}
 
-	public static void setServer(String[] serverNames, int[] ports);
+	public static void setServer(String[] serverNames, int[] ports)
+	{
+		// TODO build this
+	}
 
-	public static void startDSClient(int port);
+	public static void startDSClient(int port)
+	{
+		// TODO build this
+	}
 
-	public static void stopDSClient();
+	public static void stopDSClient()
+	{
+		// TODO build this
+	}
 
-	public static void setUpdateRate(double interval);
+	public static void setUpdateRate(double interval)
+	{
+		// TODO build this
+	}
 
-	public static ConnectionInfo[] getConnections();
+	public static ConnectionInfo[] getConnections()
+	{
+		// TODO build this
+		return null;
+	}
 
-	public static void savePersistent(String filename) throws PersistentException;
+	public static void savePersistent(String filename) throws PersistentException
+	{
+		// TODO build this
+	}
 
-	public static String[] loadPersistent(String filename) throws PersistentException; // returns
-																						// warnings
+	public static String[] loadPersistent(String filename) throws PersistentException
+	{
+		// TODO build this
+		return null;
+	}
 
 	public static long now()
 	{
@@ -383,13 +485,29 @@ public class NetworkTablesJNI
 	{
 		logger = func;
 	}
-	
+
 	public class DefaultLoggerFunction implements LoggerFunction
 	{
 		public int MIN_LEVEL = 0;
+
 		public void apply(int level, String file, int line, String msg)
 		{
-			
+			String levelMessage = "TRACE";
+			switch (level)
+			{
+			case 0: 
+				levelMessage = "DEBUG";
+				break;
+			case 1:
+				levelMessage = "INFO";
+				break;
+			case 2:
+				levelMessage = "WARN";
+				break;
+			case 3:
+				levelMessage = "ERROR";
+				break;
+			}
 			System.out.println(levelMessage + ": " + file + ": line: " + line + ": " + msg);
 		}
 	}
