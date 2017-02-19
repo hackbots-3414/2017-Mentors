@@ -1,0 +1,386 @@
+<?xml version="1.0"?>
+<sdf version="1.5">
+  <model name="3414_Hackbots_Simple">
+    <!--<static>true</static>-->
+    
+    <!-- chassis assembly -->
+    <link name="chassis">
+      <pose>0 0 .04  0 0 0</pose>
+      <collision name="chassis_collision">
+	<geometry>
+	  <box>
+	    <!--<size>.761 .815 .055</size>-->
+	    <size>.72 .687 .055</size>
+	  </box>
+	</geometry>
+      </collision>
+      <visual name="chassis_visual">
+	<geometry>
+	  <box>
+	    <size>.72 .687 .055</size>
+	  </box>
+	</geometry>
+	<material>
+	  <script>
+	    <uri>file://media/materials/scripts/gazebo.material</uri>
+	    <name>Gazebo/Indigo</name>
+	  </script>
+	</material>
+      </visual>
+    </link>
+    <link name="chassis-left-bumper">
+      <pose>0 .396 .04  0 0 0</pose>
+      <collision name="chassis-left-bumper-collision">
+	<geometry>
+	  <box>
+	    <!--<size>.761 .815 .055</size>-->
+	    <size>.761 .023 .055</size>
+	  </box>
+	</geometry>
+      </collision>
+      <visual name="chassis-left-bumper-visual">
+	<geometry>
+	  <box>
+	    <size>.761 .023 .055</size>
+	  </box>
+	</geometry>
+	<material>
+	  <script>
+	    <uri>file://media/materials/scripts/gazebo.material</uri>
+	    <name>Gazebo/Indigo</name>
+	  </script>
+	</material>
+      </visual>
+    </link>
+    <link name="chassis-right-bumper">
+      <pose>0 -0.396 .04  0 0 0</pose>
+      <collision name="chassis-right-bumper-collision">
+	<geometry>
+	  <box>
+	    <!--<size>.761 .815 .055</size>-->
+	    <size>.761 .023 .055</size>
+	  </box>
+	</geometry>
+      </collision>
+      <visual name="chassis-right-bumper-visual">
+	<geometry>
+	  <box>
+	    <size>.761 .023 .055</size>
+	  </box>
+	</geometry>
+	<material>
+	  <script>
+	    <uri>file://media/materials/scripts/gazebo.material</uri>
+	    <name>Gazebo/Indigo</name>
+	  </script>
+	</material>
+      </visual>
+    </link>
+    <link name="chassis-front-bumper">
+      <pose>.37 0 .04  0 0 0</pose>
+      <collision name="chassis-front-bumper-collision">
+	<geometry>
+	  <box>
+	    <!--<size>.761 .815 .055</size>-->
+	    <size>.023 .815 .055</size>
+	  </box>
+	</geometry>
+      </collision>
+      <visual name="chassis_front-bumper-visual">
+	<geometry>
+	  <box>
+	    <size>.023 .815 .055</size>
+	  </box>
+	</geometry>
+	<material>
+	  <script>
+	    <uri>file://media/materials/scripts/gazebo.material</uri>
+	    <name>Gazebo/Purple</name>
+	  </script>
+	</material>
+      </visual>
+    </link>
+    <link name="chassis-rear-bumper">
+      <pose>-.37 0 .04  0 0 0</pose>
+      <collision name="chassis-front-bumper-collision">
+	<geometry>
+	  <box>
+	    <!--<size>.761 .815 .055</size>-->
+	    <size>.023 .815 .055</size>
+	  </box>
+	</geometry>
+      </collision>
+      <visual name="chassis_rear-bumper-visual">
+	<geometry>
+	  <box>
+	    <size>.023 .815 .055</size>
+	  </box>
+	</geometry>
+	<material>
+	  <script>
+	    <uri>file://media/materials/scripts/gazebo.material</uri>
+	    <name>Gazebo/Indigo</name>
+	  </script>
+	</material>
+      </visual>
+    </link>
+
+    
+    <!-- Left side wheels -->
+    <link name="left-front-wheel">
+      <pose>.204 .364 .047  0 1.5707 1.5707</pose>
+      <collision name="left-front-middle-wheel-collision">
+	<geometry>
+	  <cylinder>
+	    <radius>.047</radius>
+	    <length>.041</length>
+	  </cylinder>
+	</geometry>
+      </collision>
+      <visual name="left-front-wheel">
+	<geometry>
+	  <cylinder>
+	    <radius>.047</radius>
+	    <length>.041</length>
+	  </cylinder>
+	</geometry>
+	<material>
+	  <script>
+	    <uri>file://media/materials/scripts/gazebo.material</uri>
+	    <name>Gazebo/DarkGrey</name>
+	  </script>
+	</material>
+      </visual>
+    </link>
+    <link name="left-middle-wheel">
+      <pose>0 .364 .047  0 1.5707 1.5707</pose>
+      <collision name="left-front-middle-wheel-collision">
+	<geometry>
+	  <cylinder>
+	    <radius>.047</radius>
+	    <length>.041</length>
+	  </cylinder>
+	</geometry>
+      </collision>
+      <visual name="left-middle-wheel">
+	<geometry>
+	  <cylinder>
+	    <radius>.047</radius>
+	    <length>.041</length>
+	  </cylinder>
+	</geometry>
+	<material>
+	  <script>
+	    <uri>file://media/materials/scripts/gazebo.material</uri>
+	    <name>Gazebo/DarkGrey</name>
+	  </script>
+	</material>
+      </visual>
+    </link>
+    <link name="left-rear-wheel">
+      <pose>-.204 .364 .047  0 1.5707 1.5707</pose>
+      <collision name="left-rear-middle-wheel-collision">
+	<geometry>
+	  <cylinder>
+	    <radius>.047</radius>
+	    <length>.041</length>
+	  </cylinder>
+	</geometry>
+      </collision>
+      <visual name="left-rear-wheel">
+	<geometry>
+	  <cylinder>
+	    <radius>.047</radius>
+	    <length>.041</length>
+	  </cylinder>
+	</geometry>
+	<material>
+	  <script>
+	    <uri>file://media/materials/scripts/gazebo.material</uri>
+	    <name>Gazebo/DarkGrey</name>
+	  </script>
+	</material>
+      </visual>
+    </link>
+	
+    <!-- Right side wheels -->
+    <link name="right-front-wheel">
+      <pose>.204 -0.364 .047  0 1.5707 1.5707</pose>
+      <collision name="right-front-wheel-collision">
+	<geometry>
+	  <cylinder>
+	    <radius>.047</radius>
+	    <length>.041</length>
+	  </cylinder>
+	</geometry>
+      </collision>
+      <visual name="right-front-wheel">
+	<geometry>
+	  <cylinder>
+	    <radius>.047</radius>
+	    <length>.041</length>
+	  </cylinder>
+	</geometry>
+	<material>
+	  <script>
+	    <uri>file://media/materials/scripts/gazebo.material</uri>
+	    <name>Gazebo/DarkGrey</name>
+	  </script>
+	</material>
+      </visual>
+    </link>
+    <link name="right-middle-wheel">
+      <pose>0 -0.364 .047  0 1.5707 1.5707</pose>
+      <collision name="right-middle-wheel-collision">
+	<geometry>
+	  <cylinder>
+	    <radius>.047</radius>
+	    <length>.041</length>
+	  </cylinder>
+	</geometry>
+      </collision>
+      <visual name="right-middle-wheel">
+	<geometry>
+	  <cylinder>
+	    <radius>.047</radius>
+	    <length>.041</length>
+	  </cylinder>
+	</geometry>
+	<material>
+	  <script>
+	    <uri>file://media/materials/scripts/gazebo.material</uri>
+	    <name>Gazebo/DarkGrey</name>
+	  </script>
+	</material>
+      </visual>
+    </link>
+    <link name="right-rear-wheel">
+      <pose>-.204 -0.364 .047  0 1.5707 1.5707</pose>
+      <collision name="right-rear-wheel-collision">
+	<geometry>
+	  <cylinder>
+	    <radius>.047</radius>
+	    <length>.041</length>
+	  </cylinder>
+	</geometry>
+      </collision>
+      <visual name="right-rear-wheel">
+	<geometry>
+	  <cylinder>
+	    <radius>.047</radius>
+	    <length>.041</length>
+	  </cylinder>
+	</geometry>
+	<material>
+	  <script>
+	    <uri>file://media/materials/scripts/gazebo.material</uri>
+	    <name>Gazebo/DarkGrey</name>
+	  </script>
+	</material>
+      </visual>
+    </link>
+
+    <!-- bumper joints -->
+    
+    <!-- left wheel joint specifications -->
+    <joint type="revolute" name="left-front-wheel-hinge-inner">
+      <pose>.204 .364 0.047  0 0 0</pose>
+      <child>left-front-wheel</child>
+      <parent>chassis</parent>
+      <axis>
+	<xyz>0 1 0</xyz>
+      </axis>
+    </joint>
+    <joint type="revolute" name="left-front-wheel-hinge-outer">
+      <pose>.204 .396 0.047  0 0 0</pose>
+      <child>left-front-wheel</child>
+      <parent>chassis-left-bumper</parent>
+      <axis>
+	<xyz>0 1 0</xyz>
+      </axis>
+    </joint>
+    <joint type="revolute" name="left-middle-wheel-hinge-inner">
+      <pose>0 .364 0.047  0 0 0</pose>
+      <child>left-middle-wheel</child>
+      <parent>chassis</parent>
+      <axis>
+	<xyz>0 1 0</xyz>
+      </axis>
+    </joint>
+    <joint type="revolute" name="left-middle-wheel-hinge-outer">
+      <pose>0 .396 0.047  0 0 0</pose>
+      <child>left-middle-wheel</child>
+      <parent>chassis-left-bumper</parent>
+      <axis>
+	<xyz>0 1 0</xyz>
+      </axis>
+    </joint>
+    <joint type="revolute" name="left-rear-wheel-hinge-inner">
+      <pose>-.204 .364 0.047  0 0 0</pose>
+      <child>left-rear-wheel</child>
+      <parent>chassis</parent>
+      <axis>
+	<xyz>0 1 0</xyz>
+      </axis>
+    </joint>
+    <joint type="revolute" name="left-rear-wheel-hinge-outer">
+      <pose>-.204 .396 0.047  0 0 0</pose>
+      <child>left-rear-wheel</child>
+      <parent>chassis-left-bumper</parent>
+      <axis>
+	<xyz>0 1 0</xyz>
+      </axis>
+    </joint>
+
+        <!-- right wheel joint specifications -->
+    <joint type="revolute" name="right-front-wheel-hinge-inner">
+      <pose>.204 -.364 0.047  0 0 0</pose>
+      <child>right-front-wheel</child>
+      <parent>chassis</parent>
+      <axis>
+	<xyz>0 1 0</xyz>
+      </axis>
+    </joint>
+    <joint type="revolute" name="right-front-wheel-hinge-outer">
+      <pose>.204 -.396 0.047  0 0 0</pose>
+      <child>right-front-wheel</child>
+      <parent>chassis-right-bumper</parent>
+      <axis>
+	<xyz>0 1 0</xyz>
+      </axis>
+    </joint>
+    <joint type="revolute" name="right-middle-wheel-hinge-inner">
+      <pose>0 -.364 0.047  0 0 0</pose>
+      <child>right-middle-wheel</child>
+      <parent>chassis</parent>
+      <axis>
+	<xyz>0 1 0</xyz>
+      </axis>
+    </joint>
+    <joint type="revolute" name="right-middle-wheel-hinge-outer">
+      <pose>0 -.396 0.047  0 0 0</pose>
+      <child>right-middle-wheel</child>
+      <parent>chassis-right-bumper</parent>
+      <axis>
+	<xyz>0 1 0</xyz>
+      </axis>
+    </joint>
+    <joint type="revolute" name="right-rear-wheel-hinge-inner">
+      <pose>-.204 -.364 0.047  0 0 0</pose>
+      <child>right-rear-wheel</child>
+      <parent>chassis</parent>
+      <axis>
+	<xyz>0 1 0</xyz>
+      </axis>
+    </joint>
+    <joint type="revolute" name="right-rear-wheel-hinge-outer">
+      <pose>-.204 -.396 0.047  0 0 0</pose>
+      <child>right-rear-wheel</child>
+      <parent>chassis-right-bumper</parent>
+      <axis>
+	<xyz>0 1 0</xyz>
+      </axis>
+    </joint>
+
+  </model>
+</sdf>
