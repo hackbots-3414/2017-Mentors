@@ -26,19 +26,19 @@
 	    <name>Gazebo/Indigo</name>
 	  </script>
 	</material>
+        <cast_shadows>1</cast_shadows>
+        <transparency>0</transparency>
       </visual>
-    </link>
-    <link name="chassis-left-bumper">
-      <pose>0 .396 .04  0 0 0</pose>
       <collision name="chassis-left-bumper-collision">
+	<pose>0 .396 0  0 0 0</pose>
 	<geometry>
 	  <box>
-	    <!--<size>.761 .815 .055</size>-->
 	    <size>.761 .023 .055</size>
 	  </box>
 	</geometry>
       </collision>
       <visual name="chassis-left-bumper-visual">
+	<pose>0 .396 0  0 0 0</pose>
 	<geometry>
 	  <box>
 	    <size>.761 .023 .055</size>
@@ -51,18 +51,16 @@
 	  </script>
 	</material>
       </visual>
-    </link>
-    <link name="chassis-right-bumper">
-      <pose>0 -0.396 .04  0 0 0</pose>
       <collision name="chassis-right-bumper-collision">
+	<pose>0 -0.396 0  0 0 0</pose>
 	<geometry>
 	  <box>
-	    <!--<size>.761 .815 .055</size>-->
 	    <size>.761 .023 .055</size>
 	  </box>
 	</geometry>
       </collision>
       <visual name="chassis-right-bumper-visual">
+	<pose>0 -0.396 0  0 0 0</pose>
 	<geometry>
 	  <box>
 	    <size>.761 .023 .055</size>
@@ -75,42 +73,16 @@
 	  </script>
 	</material>
       </visual>
-    </link>
-    <link name="chassis-front-bumper">
-      <pose>.37 0 .04  0 0 0</pose>
-      <collision name="chassis-front-bumper-collision">
+      <collision name="chassis-rear-bumper-collision">
+	<pose>-.37 0 0  0 0 0</pose>
 	<geometry>
 	  <box>
-	    <!--<size>.761 .815 .055</size>-->
 	    <size>.023 .815 .055</size>
 	  </box>
 	</geometry>
       </collision>
-      <visual name="chassis_front-bumper-visual">
-	<geometry>
-	  <box>
-	    <size>.023 .815 .055</size>
-	  </box>
-	</geometry>
-	<material>
-	  <script>
-	    <uri>file://media/materials/scripts/gazebo.material</uri>
-	    <name>Gazebo/Purple</name>
-	  </script>
-	</material>
-      </visual>
-    </link>
-    <link name="chassis-rear-bumper">
-      <pose>-.37 0 .04  0 0 0</pose>
-      <collision name="chassis-front-bumper-collision">
-	<geometry>
-	  <box>
-	    <!--<size>.761 .815 .055</size>-->
-	    <size>.023 .815 .055</size>
-	  </box>
-	</geometry>
-      </collision>
-      <visual name="chassis_rear-bumper-visual">
+      <visual name="chassis-rear-bumper-visual">
+	<pose>-.37 0 0  0 0 0</pose>
 	<geometry>
 	  <box>
 	    <size>.023 .815 .055</size>
@@ -125,19 +97,63 @@
       </visual>
     </link>
 
-    
     <!-- Left side wheels -->
     <link name="left-front-wheel">
       <pose>.204 .364 .047  0 1.5707 1.5707</pose>
-      <collision name="left-front-middle-wheel-collision">
+      <inertial>
+        <mass>0.2329</mass>
+      </inertial>
+      <self_collide>0</self_collide>
+      <kinematic>0</kinematic>
+      <velocity_decay>
+        <linear>0</linear>
+        <angular>0</angular>
+      </velocity_decay>
+      <collision name="left-front-wheel-collision">
 	<geometry>
 	  <cylinder>
 	    <radius>.047</radius>
 	    <length>.041</length>
 	  </cylinder>
 	</geometry>
+        <surface>
+          <friction>
+            <ode>
+              <mu>1</mu>
+              <mu2>1</mu2>
+              <fdir1>0 0 0</fdir1>
+              <slip1>0</slip1>
+              <slip2>0</slip2>
+            </ode>
+          </friction>
+          <bounce>
+            <restitution_coefficient>0</restitution_coefficient>
+            <threshold>1e+06</threshold>
+          </bounce>
+          <contact>
+            <collide_without_contact>0</collide_without_contact>
+            <collide_without_contact_bitmask>1</collide_without_contact_bitmask>
+            <collide_bitmask>1</collide_bitmask>
+            <ode>
+              <soft_cfm>0</soft_cfm>
+              <soft_erp>0.2</soft_erp>
+              <kp>1e+13</kp>
+              <kd>1</kd>
+              <max_vel>0.01</max_vel>
+              <min_depth>0</min_depth>
+            </ode>
+            <bullet>
+              <split_impulse>1</split_impulse>
+              <split_impulse_penetration_threshold>-0.01</split_impulse_penetration_threshold>
+              <soft_cfm>0</soft_cfm>
+              <soft_erp>0.2</soft_erp>
+              <kp>1e+13</kp>
+              <kd>1</kd>
+            </bullet>
+          </contact>
+        </surface>
       </collision>
-      <visual name="left-front-wheel">
+      <visual name="left-front-wheel-visual">
 	<geometry>
 	  <cylinder>
 	    <radius>.047</radius>
@@ -154,6 +170,15 @@
     </link>
     <link name="left-middle-wheel">
       <pose>0 .364 .047  0 1.5707 1.5707</pose>
+      <inertial>
+        <mass>0.2329</mass>
+      </inertial>
+      <self_collide>0</self_collide>
+      <kinematic>0</kinematic>
+      <velocity_decay>
+        <linear>0</linear>
+        <angular>0</angular>
+      </velocity_decay>
       <collision name="left-front-middle-wheel-collision">
 	<geometry>
 	  <cylinder>
@@ -161,8 +186,44 @@
 	    <length>.041</length>
 	  </cylinder>
 	</geometry>
+        <surface>
+          <friction>
+            <ode>
+              <mu>1</mu>
+              <mu2>1</mu2>
+              <fdir1>0 0 0</fdir1>
+              <slip1>0</slip1>
+              <slip2>0</slip2>
+            </ode>
+          </friction>
+          <bounce>
+            <restitution_coefficient>0</restitution_coefficient>
+            <threshold>1e+06</threshold>
+          </bounce>
+          <contact>
+            <collide_without_contact>0</collide_without_contact>
+            <collide_without_contact_bitmask>1</collide_without_contact_bitmask>
+            <collide_bitmask>1</collide_bitmask>
+            <ode>
+              <soft_cfm>0</soft_cfm>
+              <soft_erp>0.2</soft_erp>
+              <kp>1e+13</kp>
+              <kd>1</kd>
+              <max_vel>0.01</max_vel>
+              <min_depth>0</min_depth>
+            </ode>
+            <bullet>
+              <split_impulse>1</split_impulse>
+              <split_impulse_penetration_threshold>-0.01</split_impulse_penetration_threshold>
+              <soft_cfm>0</soft_cfm>
+              <soft_erp>0.2</soft_erp>
+              <kp>1e+13</kp>
+              <kd>1</kd>
+            </bullet>
+          </contact>
+        </surface>
       </collision>
-      <visual name="left-middle-wheel">
+      <visual name="left-middle-wheel-visual">
 	<geometry>
 	  <cylinder>
 	    <radius>.047</radius>
@@ -179,6 +240,15 @@
     </link>
     <link name="left-rear-wheel">
       <pose>-.204 .364 .047  0 1.5707 1.5707</pose>
+      <inertial>
+        <mass>0.2329</mass>
+      </inertial>
+      <self_collide>0</self_collide>
+      <kinematic>0</kinematic>
+      <velocity_decay>
+        <linear>0</linear>
+        <angular>0</angular>
+      </velocity_decay>
       <collision name="left-rear-middle-wheel-collision">
 	<geometry>
 	  <cylinder>
@@ -186,8 +256,44 @@
 	    <length>.041</length>
 	  </cylinder>
 	</geometry>
+        <surface>
+          <friction>
+            <ode>
+              <mu>1</mu>
+              <mu2>1</mu2>
+              <fdir1>0 0 0</fdir1>
+              <slip1>0</slip1>
+              <slip2>0</slip2>
+            </ode>
+          </friction>
+          <bounce>
+            <restitution_coefficient>0</restitution_coefficient>
+            <threshold>1e+06</threshold>
+          </bounce>
+          <contact>
+            <collide_without_contact>0</collide_without_contact>
+            <collide_without_contact_bitmask>1</collide_without_contact_bitmask>
+            <collide_bitmask>1</collide_bitmask>
+            <ode>
+              <soft_cfm>0</soft_cfm>
+              <soft_erp>0.2</soft_erp>
+              <kp>1e+13</kp>
+              <kd>1</kd>
+              <max_vel>0.01</max_vel>
+              <min_depth>0</min_depth>
+            </ode>
+            <bullet>
+              <split_impulse>1</split_impulse>
+              <split_impulse_penetration_threshold>-0.01</split_impulse_penetration_threshold>
+              <soft_cfm>0</soft_cfm>
+              <soft_erp>0.2</soft_erp>
+              <kp>1e+13</kp>
+              <kd>1</kd>
+            </bullet>
+          </contact>
+        </surface>
       </collision>
-      <visual name="left-rear-wheel">
+      <visual name="left-rear-wheel-visual">
 	<geometry>
 	  <cylinder>
 	    <radius>.047</radius>
@@ -206,6 +312,15 @@
     <!-- Right side wheels -->
     <link name="right-front-wheel">
       <pose>.204 -0.364 .047  0 1.5707 1.5707</pose>
+      <inertial>
+        <mass>0.2329</mass>
+      </inertial>
+      <self_collide>0</self_collide>
+      <kinematic>0</kinematic>
+      <velocity_decay>
+        <linear>0</linear>
+        <angular>0</angular>
+      </velocity_decay>
       <collision name="right-front-wheel-collision">
 	<geometry>
 	  <cylinder>
@@ -213,8 +328,44 @@
 	    <length>.041</length>
 	  </cylinder>
 	</geometry>
+        <surface>
+          <friction>
+            <ode>
+              <mu>1</mu>
+              <mu2>1</mu2>
+              <fdir1>0 0 0</fdir1>
+              <slip1>0</slip1>
+              <slip2>0</slip2>
+            </ode>
+          </friction>
+          <bounce>
+            <restitution_coefficient>0</restitution_coefficient>
+            <threshold>1e+06</threshold>
+          </bounce>
+          <contact>
+            <collide_without_contact>0</collide_without_contact>
+            <collide_without_contact_bitmask>1</collide_without_contact_bitmask>
+            <collide_bitmask>1</collide_bitmask>
+            <ode>
+              <soft_cfm>0</soft_cfm>
+              <soft_erp>0.2</soft_erp>
+              <kp>1e+13</kp>
+              <kd>1</kd>
+              <max_vel>0.01</max_vel>
+              <min_depth>0</min_depth>
+            </ode>
+            <bullet>
+              <split_impulse>1</split_impulse>
+              <split_impulse_penetration_threshold>-0.01</split_impulse_penetration_threshold>
+              <soft_cfm>0</soft_cfm>
+              <soft_erp>0.2</soft_erp>
+              <kp>1e+13</kp>
+              <kd>1</kd>
+            </bullet>
+          </contact>
+        </surface>
       </collision>
-      <visual name="right-front-wheel">
+      <visual name="right-front-wheel-visual">
 	<geometry>
 	  <cylinder>
 	    <radius>.047</radius>
@@ -231,6 +382,15 @@
     </link>
     <link name="right-middle-wheel">
       <pose>0 -0.364 .047  0 1.5707 1.5707</pose>
+      <inertial>
+        <mass>0.2329</mass>
+      </inertial>
+      <self_collide>0</self_collide>
+      <kinematic>0</kinematic>
+      <velocity_decay>
+        <linear>0</linear>
+        <angular>0</angular>
+      </velocity_decay>
       <collision name="right-middle-wheel-collision">
 	<geometry>
 	  <cylinder>
@@ -238,8 +398,44 @@
 	    <length>.041</length>
 	  </cylinder>
 	</geometry>
+        <surface>
+          <friction>
+            <ode>
+              <mu>1</mu>
+              <mu2>1</mu2>
+              <fdir1>0 0 0</fdir1>
+              <slip1>0</slip1>
+              <slip2>0</slip2>
+            </ode>
+          </friction>
+          <bounce>
+            <restitution_coefficient>0</restitution_coefficient>
+            <threshold>1e+06</threshold>
+          </bounce>
+          <contact>
+            <collide_without_contact>0</collide_without_contact>
+            <collide_without_contact_bitmask>1</collide_without_contact_bitmask>
+            <collide_bitmask>1</collide_bitmask>
+            <ode>
+              <soft_cfm>0</soft_cfm>
+              <soft_erp>0.2</soft_erp>
+              <kp>1e+13</kp>
+              <kd>1</kd>
+              <max_vel>0.01</max_vel>
+              <min_depth>0</min_depth>
+            </ode>
+            <bullet>
+              <split_impulse>1</split_impulse>
+              <split_impulse_penetration_threshold>-0.01</split_impulse_penetration_threshold>
+              <soft_cfm>0</soft_cfm>
+              <soft_erp>0.2</soft_erp>
+              <kp>1e+13</kp>
+              <kd>1</kd>
+            </bullet>
+          </contact>
+        </surface>
       </collision>
-      <visual name="right-middle-wheel">
+      <visual name="right-middle-wheel-visual">
 	<geometry>
 	  <cylinder>
 	    <radius>.047</radius>
@@ -256,6 +452,15 @@
     </link>
     <link name="right-rear-wheel">
       <pose>-.204 -0.364 .047  0 1.5707 1.5707</pose>
+      <inertial>
+        <mass>0.2329</mass>
+      </inertial>
+      <self_collide>0</self_collide>
+      <kinematic>0</kinematic>
+      <velocity_decay>
+        <linear>0</linear>
+        <angular>0</angular>
+      </velocity_decay>
       <collision name="right-rear-wheel-collision">
 	<geometry>
 	  <cylinder>
@@ -263,8 +468,44 @@
 	    <length>.041</length>
 	  </cylinder>
 	</geometry>
+        <surface>
+          <friction>
+            <ode>
+              <mu>1</mu>
+              <mu2>1</mu2>
+              <fdir1>0 0 0</fdir1>
+              <slip1>0</slip1>
+              <slip2>0</slip2>
+            </ode>
+          </friction>
+          <bounce>
+            <restitution_coefficient>0</restitution_coefficient>
+            <threshold>1e+06</threshold>
+          </bounce>
+          <contact>
+            <collide_without_contact>0</collide_without_contact>
+            <collide_without_contact_bitmask>1</collide_without_contact_bitmask>
+            <collide_bitmask>1</collide_bitmask>
+            <ode>
+              <soft_cfm>0</soft_cfm>
+              <soft_erp>0.2</soft_erp>
+              <kp>1e+13</kp>
+              <kd>1</kd>
+              <max_vel>0.01</max_vel>
+              <min_depth>0</min_depth>
+            </ode>
+            <bullet>
+              <split_impulse>1</split_impulse>
+              <split_impulse_penetration_threshold>-0.01</split_impulse_penetration_threshold>
+              <soft_cfm>0</soft_cfm>
+              <soft_erp>0.2</soft_erp>
+              <kp>1e+13</kp>
+              <kd>1</kd>
+            </bullet>
+          </contact>
+        </surface>
       </collision>
-      <visual name="right-rear-wheel">
+      <visual name="right-rear-wheel-visual">
 	<geometry>
 	  <cylinder>
 	    <radius>.047</radius>
@@ -280,107 +521,94 @@
       </visual>
     </link>
 
-    <!-- bumper joints -->
-    
+
     <!-- left wheel joint specifications -->
     <joint type="revolute" name="left-front-wheel-hinge-inner">
-      <pose>.204 .364 0.047  0 0 0</pose>
       <child>left-front-wheel</child>
       <parent>chassis</parent>
       <axis>
 	<xyz>0 1 0</xyz>
-      </axis>
-    </joint>
-    <joint type="revolute" name="left-front-wheel-hinge-outer">
-      <pose>.204 .396 0.047  0 0 0</pose>
-      <child>left-front-wheel</child>
-      <parent>chassis-left-bumper</parent>
-      <axis>
-	<xyz>0 1 0</xyz>
+        <use_parent_model_frame>1</use_parent_model_frame>
       </axis>
     </joint>
     <joint type="revolute" name="left-middle-wheel-hinge-inner">
-      <pose>0 .364 0.047  0 0 0</pose>
       <child>left-middle-wheel</child>
       <parent>chassis</parent>
       <axis>
 	<xyz>0 1 0</xyz>
-      </axis>
-    </joint>
-    <joint type="revolute" name="left-middle-wheel-hinge-outer">
-      <pose>0 .396 0.047  0 0 0</pose>
-      <child>left-middle-wheel</child>
-      <parent>chassis-left-bumper</parent>
-      <axis>
-	<xyz>0 1 0</xyz>
+        <use_parent_model_frame>1</use_parent_model_frame>
       </axis>
     </joint>
     <joint type="revolute" name="left-rear-wheel-hinge-inner">
-      <pose>-.204 .364 0.047  0 0 0</pose>
       <child>left-rear-wheel</child>
       <parent>chassis</parent>
       <axis>
 	<xyz>0 1 0</xyz>
-      </axis>
-    </joint>
-    <joint type="revolute" name="left-rear-wheel-hinge-outer">
-      <pose>-.204 .396 0.047  0 0 0</pose>
-      <child>left-rear-wheel</child>
-      <parent>chassis-left-bumper</parent>
-      <axis>
-	<xyz>0 1 0</xyz>
+        <use_parent_model_frame>1</use_parent_model_frame>
       </axis>
     </joint>
 
-        <!-- right wheel joint specifications -->
+    <!-- right wheel joint specifications -->
     <joint type="revolute" name="right-front-wheel-hinge-inner">
-      <pose>.204 -.364 0.047  0 0 0</pose>
       <child>right-front-wheel</child>
       <parent>chassis</parent>
       <axis>
 	<xyz>0 1 0</xyz>
-      </axis>
-    </joint>
-    <joint type="revolute" name="right-front-wheel-hinge-outer">
-      <pose>.204 -.396 0.047  0 0 0</pose>
-      <child>right-front-wheel</child>
-      <parent>chassis-right-bumper</parent>
-      <axis>
-	<xyz>0 1 0</xyz>
+        <use_parent_model_frame>1</use_parent_model_frame>
       </axis>
     </joint>
     <joint type="revolute" name="right-middle-wheel-hinge-inner">
-      <pose>0 -.364 0.047  0 0 0</pose>
       <child>right-middle-wheel</child>
       <parent>chassis</parent>
       <axis>
 	<xyz>0 1 0</xyz>
-      </axis>
-    </joint>
-    <joint type="revolute" name="right-middle-wheel-hinge-outer">
-      <pose>0 -.396 0.047  0 0 0</pose>
-      <child>right-middle-wheel</child>
-      <parent>chassis-right-bumper</parent>
-      <axis>
-	<xyz>0 1 0</xyz>
+        <use_parent_model_frame>1</use_parent_model_frame>
       </axis>
     </joint>
     <joint type="revolute" name="right-rear-wheel-hinge-inner">
-      <pose>-.204 -.364 0.047  0 0 0</pose>
       <child>right-rear-wheel</child>
       <parent>chassis</parent>
       <axis>
 	<xyz>0 1 0</xyz>
+        <use_parent_model_frame>1</use_parent_model_frame>
       </axis>
     </joint>
-    <joint type="revolute" name="right-rear-wheel-hinge-outer">
-      <pose>-.204 -.396 0.047  0 0 0</pose>
-      <child>right-rear-wheel</child>
-      <parent>chassis-right-bumper</parent>
-      <axis>
-	<xyz>0 1 0</xyz>
-      </axis>
-    </joint>
+
+    <!-- set up the .so files for control via Eclipse -->
+        <allow_auto_disable>1</allow_auto_disable>
+    <plugin name='clock' filename='libclock.so'>
+      <topic>/gazebo/frc/time</topic>
+    </plugin>
+    <plugin name='left-front-wheel-motor' filename='libdc_motor.so'>
+      <joint>left-front-wheel-hinge-inner</joint>
+      <topic>/gazebo/frc/simulator/pwm/1</topic>
+      <multiplier>0.0</multiplier>
+    </plugin>
+    <plugin name='left-middle-wheel-motor' filename='libdc_motor.so'>
+      <joint>left-middle-wheel-hinge-inner</joint>
+      <topic>/gazebo/frc/simulator/pwm/1</topic>
+      <multiplier>-5.0</multiplier>
+    </plugin>
+    <plugin name='left-rear-wheel-motor' filename='libdc_motor.so'>
+      <joint>left-rear-wheel-hinge-inner</joint>
+      <topic>/gazebo/frc/simulator/pwm/1</topic>
+      <multiplier>-5.0</multiplier>
+    </plugin>
+    <plugin name='right-front-wheel-motor' filename='libdc_motor.so'>
+      <joint>right-front-wheel-hinge-inner</joint>
+      <topic>/gazebo/frc/simulator/pwm/2</topic>
+      <multiplier>5.0</multiplier>
+    </plugin>
+    <plugin name='right-middle-wheel-motor' filename='libdc_motor.so'>
+      <joint>right-middle-wheel-hinge-inner</joint>
+      <topic>/gazebo/frc/simulator/pwm/2</topic>
+      <multiplier>5.0</multiplier>
+    </plugin>
+    <plugin name='right-rear-wheel-motor' filename='libdc_motor.so'>
+      <joint>right-rear-wheel-hinge-inner</joint>
+      <topic>/gazebo/frc/simulator/pwm/2</topic>
+      <multiplier>0.0</multiplier>
+    </plugin>
 
   </model>
 </sdf>
