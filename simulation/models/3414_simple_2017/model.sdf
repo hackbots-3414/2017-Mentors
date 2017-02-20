@@ -6,6 +6,17 @@
     <!-- chassis assembly -->
     <link name="chassis">
       <pose>0 0 .04  0 0 0</pose>
+      <inertial>
+        <mass>25</mass>
+        <inertia>
+          <ixx>2.36322</ixx>
+          <ixy>0.0350859</ixy>
+          <ixz>-0.0148172</ixz>
+          <iyy>3.15412</iyy>
+          <iyz>-0.120636</iyz>
+          <izz>1.46638</izz>
+        </inertia>
+      </inertial>
       <collision name="chassis_collision">
 	<geometry>
 	  <box>
