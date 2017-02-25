@@ -7,7 +7,7 @@
     <link name="chassis">
       <pose>0 0 .04  0 0 0</pose>
       <inertial>
-        <mass>25</mass>
+        <mass>40</mass>
         <inertia>
           <ixx>2.36322</ixx>
           <ixy>0.0350859</ixy>
@@ -540,6 +540,10 @@
       <axis>
 	<xyz>0 1 0</xyz>
         <use_parent_model_frame>1</use_parent_model_frame>
+        <dynamics>
+          <damping>2</damping>
+          <friction>0.01</friction>
+        </dynamics>
       </axis>
     </joint>
     <joint type="revolute" name="left-middle-wheel-hinge-inner">
@@ -548,6 +552,10 @@
       <axis>
 	<xyz>0 1 0</xyz>
         <use_parent_model_frame>1</use_parent_model_frame>
+        <dynamics>
+          <damping>2</damping>
+          <friction>0.01</friction>
+        </dynamics>
       </axis>
     </joint>
     <joint type="revolute" name="left-rear-wheel-hinge-inner">
@@ -556,6 +564,10 @@
       <axis>
 	<xyz>0 1 0</xyz>
         <use_parent_model_frame>1</use_parent_model_frame>
+        <dynamics>
+          <damping>2</damping>
+          <friction>0.01</friction>
+        </dynamics>
       </axis>
     </joint>
 
@@ -566,6 +578,10 @@
       <axis>
 	<xyz>0 1 0</xyz>
         <use_parent_model_frame>1</use_parent_model_frame>
+        <dynamics>
+          <damping>2</damping>
+          <friction>0.01</friction>
+        </dynamics>
       </axis>
     </joint>
     <joint type="revolute" name="right-middle-wheel-hinge-inner">
@@ -574,6 +590,10 @@
       <axis>
 	<xyz>0 1 0</xyz>
         <use_parent_model_frame>1</use_parent_model_frame>
+        <dynamics>
+          <damping>2</damping>
+          <friction>0.01</friction>
+        </dynamics>
       </axis>
     </joint>
     <joint type="revolute" name="right-rear-wheel-hinge-inner">
@@ -582,6 +602,10 @@
       <axis>
 	<xyz>0 1 0</xyz>
         <use_parent_model_frame>1</use_parent_model_frame>
+        <dynamics>
+          <damping>2</damping>
+          <friction>0.01</friction>
+        </dynamics>
       </axis>
     </joint>
 
@@ -593,32 +617,32 @@
     <plugin name='left-front-wheel-motor' filename='libdc_motor.so'>
       <joint>left-front-wheel-hinge-inner</joint>
       <topic>/gazebo/frc/simulator/pwm/1</topic>
-      <multiplier>0.0</multiplier>
+      <multiplier>25.0</multiplier>
     </plugin>
     <plugin name='left-middle-wheel-motor' filename='libdc_motor.so'>
       <joint>left-middle-wheel-hinge-inner</joint>
       <topic>/gazebo/frc/simulator/pwm/1</topic>
-      <multiplier>-5.0</multiplier>
+      <multiplier>25.0</multiplier>
     </plugin>
     <plugin name='left-rear-wheel-motor' filename='libdc_motor.so'>
       <joint>left-rear-wheel-hinge-inner</joint>
       <topic>/gazebo/frc/simulator/pwm/1</topic>
-      <multiplier>-5.0</multiplier>
+      <multiplier>25.0</multiplier>
     </plugin>
     <plugin name='right-front-wheel-motor' filename='libdc_motor.so'>
       <joint>right-front-wheel-hinge-inner</joint>
       <topic>/gazebo/frc/simulator/pwm/2</topic>
-      <multiplier>5.0</multiplier>
+      <multiplier>-25.0</multiplier>
     </plugin>
     <plugin name='right-middle-wheel-motor' filename='libdc_motor.so'>
       <joint>right-middle-wheel-hinge-inner</joint>
       <topic>/gazebo/frc/simulator/pwm/2</topic>
-      <multiplier>5.0</multiplier>
+      <multiplier>-25.0</multiplier>
     </plugin>
     <plugin name='right-rear-wheel-motor' filename='libdc_motor.so'>
       <joint>right-rear-wheel-hinge-inner</joint>
       <topic>/gazebo/frc/simulator/pwm/2</topic>
-      <multiplier>0.0</multiplier>
+      <multiplier>-25.0</multiplier>
     </plugin>
 
   </model>
