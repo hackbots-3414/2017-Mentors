@@ -7,14 +7,22 @@
     <link name="chassis">
       <pose>0 0 .04  0 0 0</pose>
       <inertial>
-        <mass>40</mass>
-        <inertia>
+        <mass>54</mass>
+        <!-- <inertia>
           <ixx>2.36322</ixx>
           <ixy>0.0350859</ixy>
           <ixz>-0.0148172</ixz>
           <iyy>3.15412</iyy>
           <iyz>-0.120636</iyz>
           <izz>1.46638</izz>
+        </inertia> -->
+        <inertia>
+          <ixx>5.153</ixx>
+          <ixy>0.07079</ixy>
+          <ixz>12.46</ixz>
+          <iyy>0.7343</iyy>
+          <iyz>0.05588</iyz>
+          <izz>0.9479</izz>
         </inertia>
       </inertial>
       <collision name="chassis_collision">
