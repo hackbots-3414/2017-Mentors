@@ -652,6 +652,22 @@
       <topic>/gazebo/frc/simulator/pwm/2</topic>
       <multiplier>-25.0</multiplier>
     </plugin>
+    <plugin name='left-front-wheel-encoder' filename='libencoder.so'>
+      <joint>left-front-wheel-hinge-inner</joint>
+      <topic>/gazebo/frc/simulator/dio/1/2</topic>
+      <units>degrees</units>
+    </plugin>
+    <plugin name='right-front-wheel-encoder' filename='libencoder.so'>
+      <joint>right-front-wheel-hinge-inner</joint>
+      <topic>/gazebo/frc/simulator/dio/3/4</topic>
+      <units>degrees</units>
+    </plugin>
+    <plugin name='gyro' filename='libgyro.so'>
+      <link>chassis</link>
+      <topic>/gazebo/frc/simulator/analog/2</topic>
+      <axis>yaw</axis>
+      <units>degrees</units>
+    </plugin>
 
   </model>
 </sdf>
