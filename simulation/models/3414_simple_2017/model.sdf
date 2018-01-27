@@ -668,6 +668,10 @@
       <axis>yaw</axis>
       <units>degrees</units>
     </plugin>
+    <plugin name='chassisUltrasonic_rangefinder' filename='librangefinder.so'>
+      <sensor>chassisUltrasonic</sensor>
+      <topic>/gazebo/frc/simulator/analog/6</topic>
+    </plugin>
 
   </model>
 </sdf>
