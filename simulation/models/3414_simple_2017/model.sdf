@@ -56,6 +56,15 @@
 	  </box>
 	</geometry>
       </collision>
+      <sensor name='chassisUltrasonic' type='sonar'>
+        <always_on>1</always_on>
+        <pose frame=''>-0.125 0.375 -0.085 1.5708 -0 0</pose>
+        <sonar>
+          <min>0</min>
+          <max>2</max>
+          <radius>0.1</radius>
+        </sonar>
+      </sensor>
       <visual name="chassis-left-bumper-visual">
 	<pose>0 .396 0  0 0 0</pose>
 	<geometry>
