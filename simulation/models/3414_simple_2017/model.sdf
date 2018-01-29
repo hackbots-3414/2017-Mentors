@@ -679,7 +679,7 @@
     </plugin>
     <plugin name='chassisUltrasonic_rangefinder' filename='librangefinder.so'>
       <sensor>chassisUltrasonic</sensor>
-      <topic>/gazebo/frc/simulator/analog/6</topic>
+      <topic>/gazebo/frc/simulator/dio/5/6</topic>
     </plugin>
 
   </model>
