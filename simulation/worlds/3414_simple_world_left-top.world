@@ -29,6 +29,7 @@
     <include>
       <name>Hackbots</name>
       <uri>model://3414_simple_2017</uri>
+      <pose>-2.5 -7.9 0 0 0 1.5708</pose>
     </include>
 
 
